@@ -15,6 +15,7 @@
   
   <js-module src="www/analytics.js" name="GAPlugin">
     <merges target="analytics" />
+    <clobbers target="window.analytics" />
   </js-module>
   
 
@@ -29,18 +30,16 @@
       <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <service android:name="com.google.analytics.tracking.android.CampaignTrackingService" />
-      <receiver android:name="com.google.analytics.tracking.android.CampaignTrackingReceiver" android:exported="true">
+      <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+      <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver" android:exported="true">
         <intent-filter>
-          <action android:name="com.android.vending.INSTALL_REFERRER" />
+            <action android:name="com.android.vending.INSTALL_REFERRER" />
         </intent-filter>
       </receiver>
     </config-file>
     <source-file src="src/android/CPGoogleAnalytics.java" target-dir="src/com/appfeel/cordova/analytics" />
     <dependency id="com.google.play.services" />
   </platform>
-  
-  
 
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
@@ -64,6 +63,7 @@
     <header-file src="src/ios/GAITracker.h" />
     
     <source-file src="src/ios/libGoogleAnalyticsServices.a" framework="true" />
+    <source-file src="src/ios/libAdIdAccess.a" framework="true" />
     
     <framework src="SystemConfiguration.framework" />
     <framework src="CoreData.framework" />

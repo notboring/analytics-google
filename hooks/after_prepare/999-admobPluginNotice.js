@@ -15,9 +15,5 @@ module.exports = function (context) {
 
   if (showLegend) {
     console.log();
-    console.log('*********** Monetize your app with AdMob ads. Now available with this cordova plugin:');
-    console.log('*********** cordova plugin add com.admob.google');
-    console.log('*********** Docs: https://github.com/appfeel/admob-google-cordova');
-    console.log();
   }
 };
