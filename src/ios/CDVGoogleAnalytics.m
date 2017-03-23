@@ -428,7 +428,9 @@ static id<GAITracker> _tracker = nil;
 }
 
 - (void) setDebugMode: (CDVInvokedUrlCommand*) command {
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 #pragma mark -
@@ -475,7 +477,10 @@ static id<GAITracker> _tracker = nil;
         if ([options valueForKey:CDVGA_OPT_CAMPAIGN_URL]) {
             campaignUrl = [options valueForKey:CDVGA_OPT_CAMPAIGN_URL];
         }
-        
+
+        if ([options valueForKey:CDVGA_OPT_CURRENCY_CODE]) {
+            [_tracker set:kGAICurrencyCode value:[options valueForKey:CDVGA_OPT_CURRENCY_CODE]];
+        }
     }
     
     if (campaignUrl && campaignUrl.length > 0) {
