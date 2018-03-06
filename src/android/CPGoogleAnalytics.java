@@ -217,6 +217,7 @@ public class CPGoogleAnalytics extends CordovaPlugin {
 
     if (null != id && id.length() > 0) {
       tracker = GoogleAnalytics.getInstance(this.cordova.getActivity()).newTracker(id);
+      tracker.setAnonymizeIp(true);
       tracker.enableAdvertisingIdCollection(true);
       GoogleAnalytics.getInstance(this.cordova.getActivity()).setLocalDispatchPeriod(30);
       GoogleAnalytics.getInstance(this.cordova.getActivity()).getLogger().setLogLevel(LogLevel.ERROR);
