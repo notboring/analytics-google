@@ -67,6 +67,7 @@ static id<GAITracker> _tracker = nil;
         [GAI sharedInstance].dispatchInterval = 30;
         [[GAI sharedInstance].logger setLogLevel:kGAILogLevelError];
         _tracker = [[GAI sharedInstance] trackerWithTrackingId:accountId];
+        [tracker set:kGAIAnonymizeIp value:@"1"];
         _tracker.allowIDFACollection = YES;
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         
